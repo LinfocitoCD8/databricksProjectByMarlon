@@ -49,16 +49,18 @@ CI/CD con GitHub Actions / Azure DevOps
 
 PySpark / SQL
 
-# 📂 Estructura del repositorio
-/datasets           -> insumos
-/dashboard          -> visualizaciones simples de tablas finales (golden)
-/reversion          -> archivos para eliminar tablas logicas y rutas fisicas
-/.github/workflow   -> despliegue de dev a prod
-/seguridad          -> grants brindados a usuario y grupos de tablas, schemas, etc.
-/PrepAmb            -> creacion de catalog, schemas, tablas, ext locations, etc.
-/proceso            -> notebooks de ETL
-/evidencias         -> screenshots de los servicios de azure, ejecuciones
-/readme.md          -> explicacion a detalle del proyecto realizado
+# ## 📁 Estructura del repositorio
+
+- **/datasets** → insumos  
+- **/dashboard** → visualizaciones simples de tablas finales (golden)  
+- **/reversion** → archivos para eliminar tablas lógicas y rutas físicas  
+- **/.github/workflow** → despliegue de dev a prod  
+- **/seguridad** → grants brindados a usuarios y grupos de tablas, schemas, etc.  
+- **/PrepAmb** → creación de catalog, schemas, tablas, external locations, etc.  
+- **/proceso** → notebooks de ETL  
+- **/evidencias** → screenshots de los servicios de Azure y ejecuciones  
+- **/readme.md** → explicación detallada del proyecto realizado  
+
 
 # 👤 Autor
 ### Marlon Josue Quiros Bosque
