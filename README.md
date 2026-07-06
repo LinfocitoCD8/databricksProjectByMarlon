@@ -9,6 +9,7 @@ Implementamos tambien el manejo de permisos (GRANTS), teniendo un enfoque de gob
 Datos crudos (DATA LAKE HOUSE)
 ↓
 Bronze(Ingesta)
+
 ↓
 Silver(Limpieza + transformacion)
 ↓
