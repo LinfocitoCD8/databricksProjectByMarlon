@@ -1,22 +1,74 @@
 # ETL DATOS DE SUPERMERCADO: PRODUCTOS, TRANSACCIONES Y DEMAS
 Arquitectura Medallion en Azure Databricks  
 Pipeline automatizado de datos para el analisis de datos de un supermercado, utilizando arquitectura de tres capas y un despliegue CI/CD
-# - Descripcion del proyecto
-Se creo un pipeline de Extraccion, Transformacion y Carga (ETL), en donde tomaremos datos crudos del supermercado, los ingresaremos dentro de una arquitectura Medallion (Bronze, Silver, Golden) en Azure Databricks. 
-El almacenamiento de los archivos crudos se encontraran en Azure Data Lake. Desde Databricks tomaremos estos datos y realizaremos todo el proceso automatizado con CI/CD. 
-Implementamos tambien el manejo de permisos (GRANTS), teniendo un enfoque de gobernanza de datos en el proceso. 
-# - Flujo de los datos
-Datos crudos (DATA LAKE HOUSE)
-↓
-Bronze(Ingesta)
+# 🚀 Descripción del proyecto
+Pipeline automatizado de Extracción, Transformación y Carga (ETL) para análisis de datos de un supermercado, implementado en Azure Databricks bajo la arquitectura Medallion (Bronze, Silver, Gold).
+El proyecto incluye:
 
-↓
-Silver(Limpieza + transformacion)
-↓
-Golden(Datos listos para desplegar)
-↓
-Dashboards (Visualizaciones simples usando Power BI)
+- Almacenamiento de datos crudos en Azure Data Lake
+ 
+- Procesamiento y transformación en Databricks
+
+- Despliegue automatizado con CI/CD
+
+- Gobernanza de datos mediante GRANTS
+
+- Orquestacion mediante pipeline en Databricks workflow
+
+- Visualización con Power BI
+#🎯 Objetivos
+Centralizar y limpiar datos de productos y transacciones.
+
+Implementar un flujo de datos confiable y escalable.
+
+Facilitar la creación de dashboards para análisis de negocio.
+
+Garantizar seguridad y gobernanza en el acceso a los datos.
+
+# 🗂️ Flujo de datos
+Datos crudos → Data Lakehouse
+
+Bronze → Ingesta
+
+Silver → Limpieza + Transformación
+
+Gold → Datos listos para consumo
+
+Dashboards → Visualizaciones en Power BI
+
 <img width="483" height="265" alt="ImagenReadme" src="https://github.com/user-attachments/assets/88749655-2c23-4bfe-949a-853a5a56c07d" />
+
+# 🛠️ Tecnologías utilizadas
+Azure Databricks
+
+Azure Data Lake
+
+Power BI
+
+CI/CD con GitHub Actions / Azure DevOps
+
+PySpark / SQL
+
+# 📂 Estructura del repositorio
+/datasets           -> insumos
+/dashboard          -> visualizaciones simples de tablas finales (golden)
+/reversion          -> archivos para eliminar tablas logicas y rutas fisicas
+/.github/workflow   -> despliegue de dev a prod
+/seguridad          -> grants brindados a usuario y grupos de tablas, schemas, etc.
+/PrepAmb            -> creacion de catalog, schemas, tablas, ext locations, etc.
+/proceso            -> notebooks de ETL
+/evidencias         -> screenshots de los servicios de azure, ejecuciones
+/readme.md          -> explicacion a detalle del proyecto realizado
+
+# 👤 Autor
+### Marlon Josue Quiros Bosque
+
+Proyecto: Data Engineering - Arquitectura Medallion
+Tecnología: Azure Databricks + Delta Lake + CI/CD
+
+
+
+
 
 
 
