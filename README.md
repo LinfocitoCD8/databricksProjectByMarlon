@@ -15,5 +15,9 @@ Silver(Limpieza + transformacion)
 Golden(Datos listos para desplegar)
 ↓
 Dashboards (Visualizaciones simples usando Power BI)
+<img width="483" height="265" alt="ImagenReadme" src="https://github.com/user-attachments/assets/88749655-2c23-4bfe-949a-853a5a56c07d" />
+
+
+
 
 
