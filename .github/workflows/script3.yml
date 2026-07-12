@@ -17,8 +17,8 @@ jobs:
       run: |
         ORIGIN_HOST=${{ secrets.DATABRICKS_ORIGIN_HOST }}
         ORIGIN_TOKEN=${{ secrets.DATABRICKS_ORIGIN_TOKEN }}
-        NOTEBOOK_BASE="/Workspace/Users/ahuaccachi28@gmail.com/source_ntbk"
-        NOTEBOOKS=("ntbk_1" "ntbk_2")  # Agrega más según necesitesas
+        NOTEBOOK_BASE="/Workspace/Users/marlonquirosbosque@gmail.com/databricksProjectByMarlon/proceso"
+        NOTEBOOKS=("preparacion_ambiente" "ingest_items" "ingest_everyday_Sales" "Transform" "Load")  # Agrega más según necesitesas
         mkdir -p notebooks_to_deploy
         for nb in "${NOTEBOOKS[@]}"; do
           echo "Exportando $nb en modo raw..."
@@ -32,7 +32,7 @@ jobs:
       run: |
         DEST_HOST=${{ secrets.DATABRICKS_DEST_HOST }}
         DEST_TOKEN=${{ secrets.DATABRICKS_DEST_TOKEN }}
-        DEST_BASE="/py/scripts/main"
+        DEST_BASE="/proyecto/"
         for file in notebooks_to_deploy/*.py; do
           name=$(basename "$file" .py)
           dest_path="$DEST_BASE/$name"
@@ -127,13 +127,13 @@ jobs:
           "format": "MULTI_TASK",
           "tasks": [
             {
-              "task_key": "tarea1_notebook1",
-              "description": "Ejecuta notebook ntbk_1 con parámetros",
+              "task_key": "PrepAmb",
+              "description": "Ejecuta notebook de preparacion de ambiente",
               "notebook_task": {
-                "notebook_path": "/py/scripts/main/ntbk_1",
+                "notebook_path": "/proyecto/preparacion_ambiente",
                 "source": "WORKSPACE",
                 "base_parameters": {
-                  "storageLocation": "storage"
+                  "storageName": "adlproyectomarlon"
                 }
               },
               "existing_cluster_id": "$CLUSTER_ID",
@@ -141,15 +141,16 @@ jobs:
               "max_retries": 2
             },
             {
-              "task_key": "tarea2_notebook2",
-              "description": "Ejecuta notebook ntbk_2 con parámetros",
+              "task_key": "ingest_items",
+              "description": "Ejecuta notebook ingest_items",
               "notebook_task": {
-                "notebook_path": "/py/scripts/main/ntbk_2",
+                "notebook_path": "/proyecto/ingest_items",
                 "source": "WORKSPACE",
                 "base_parameters": {
-                  "inputPath": "/data/input",
-                  "outputPath": "/data/output",
-                  "processDate": "$(date +%Y-%m-%d)"
+                  "container": "raw",
+                  "catalogo": "catalog_dev",
+                  "esquema": "bronze",
+                  "storageName": "adlproyectomarlon"
                 }
               },
               "existing_cluster_id": "$CLUSTER_ID",
@@ -157,7 +158,90 @@ jobs:
               "max_retries": 2,
               "depends_on": [
                 {
-                  "task_key": "tarea1_notebook1"
+                  "task_key": "PrepAmb"
+                }
+              ]
+            },
+            {
+              "task_key": "ingest_everyday_Sales",
+              "description": "Ejecuta notebook ingest_everyday_Sales",
+              "notebook_task": {
+                "notebook_path": "/proyecto/ingest_everyday_Sales",
+                "source": "WORKSPACE",
+                "base_parameters": {
+                  "container": "raw",
+                  "catalogo": "catalog_dev",
+                  "esquema": "bronze",
+                  "storageName": "adlproyectomarlon"
+                }
+              },
+              "existing_cluster_id": "$CLUSTER_ID",
+              "timeout_seconds": 3600,
+              "max_retries": 2,
+              "depends_on": [
+                {
+                  "task_key": "PrepAmb"
+                }
+              ]
+            },
+            {
+              "task_key": "Transform",
+              "description": "Ejecuta notebook Transform",
+              "notebook_task": {
+                "notebook_path": "/proyecto/Transform",
+                "source": "WORKSPACE",
+                "base_parameters": {
+                  "catalogo": "catalog_dev",
+                  "esquema_source": "bronze",
+                  "esquema_sink": "silver"
+                }
+              },
+              "existing_cluster_id": "$CLUSTER_ID",
+              "timeout_seconds": 3600,
+              "max_retries": 2,
+              "depends_on": [
+                {
+                  "task_key": "ingest_items"
+                },
+                {
+                  "task_key": "ingest_everyday_Sales"
+                }
+              ]
+            },
+             {
+              "task_key": "Load",
+              "description": "Ejecuta notebook Load",
+              "notebook_task": {
+                "notebook_path": "/proyecto/Load",
+                "source": "WORKSPACE",
+                "base_parameters": {
+                  "catalogo": "catalog_dev",
+                  "esquema_source": "silver",
+                  "esquema_sink": "golden"
+                }
+              },
+              "existing_cluster_id": "$CLUSTER_ID",
+              "timeout_seconds": 3600,
+              "max_retries": 2,
+              "depends_on": [
+                {
+                  "task_key": "Transform"
+                }
+              ]
+            },
+            {
+              "task_key": "Grants",
+              "description": "Ejecuta notebook Grants",
+              "notebook_task": {
+                "notebook_path": "/proyecto/Grants",
+                "source": "WORKSPACE"
+              },
+              "existing_cluster_id": "$CLUSTER_ID",
+              "timeout_seconds": 3600,
+              "max_retries": 2,
+              "depends_on": [
+                {
+                  "task_key": "Load"
                 }
               ]
             }
