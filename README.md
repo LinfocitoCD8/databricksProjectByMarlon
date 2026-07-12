@@ -67,12 +67,3 @@ PySpark / SQL
 
 Proyecto: Data Engineering - Arquitectura Medallion
 Tecnología: Azure Databricks + Delta Lake + CI/CD
-
-
-
-
-
-
-
-
-
