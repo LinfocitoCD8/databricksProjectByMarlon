@@ -59,7 +59,11 @@ PySpark / SQL
 - **/PrepAmb** → creación de catalog, schemas, tablas, external locations, etc.  
 - **/proceso** → notebooks de ETL  
 - **/evidencias** → screenshots de los servicios de Azure y ejecuciones  
-- **/readme.md** → explicación detallada del proyecto realizado  
+- **/readme.md** → explicación detallada del proyecto realizado
+
+  # ## 📁 Workflow Databricks
+  <img width="954" height="426" alt="pipelineCompletado" src="https://github.com/user-attachments/assets/19a57d30-d827-44ad-b34a-8e569d0d645f" />
+
 
 
 # 👤 Autor
