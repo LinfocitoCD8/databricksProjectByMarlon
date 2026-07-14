@@ -81,7 +81,7 @@ Estos elementos permiten establecer una conexión segura entre el entorno de **D
   <img width="539" alt="GitHub Actions Pipeline" src="https://github.com/user-attachments/assets/b02532f6-c73b-4abf-a520-a7d4671870f8">
 </p>
 
-GitHub ejecuta automáticamente un archivo de configuración **YAML** (`.yml`).
+GitHub ejecuta automáticamente un archivo de configuración **YAML** (`.yml`) el cual se encuentra en la carpeta */.github/workflow* del repositorio.
 
 Este archivo contiene la definición del **workflow**, donde se especifican los pasos necesarios para realizar el despliegue, como la autenticación con Databricks, la validación del proyecto y la publicación en el entorno de producción.
 
