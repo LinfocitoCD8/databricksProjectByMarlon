@@ -77,6 +77,10 @@ Antes de ejecutar el pipeline es necesario configurar:
 
 Estos elementos permiten establecer una conexión segura entre el entorno de **Databricks Development** y **Databricks Production**, de manera que el proceso de despliegue pueda ejecutarse automáticamente.
 
+<p align="center">
+  <img width="539" alt="GitHub Actions Pipeline" src="https://github.com/user-attachments/assets/b02532f6-c73b-4abf-a520-a7d4671870f8">
+</p>
+
 GitHub ejecuta automáticamente un archivo de configuración **YAML** (`.yml`).
 
 Este archivo contiene la definición del **workflow**, donde se especifican los pasos necesarios para realizar el despliegue, como la autenticación con Databricks, la validación del proyecto y la publicación en el entorno de producción.
@@ -86,7 +90,7 @@ Este archivo contiene la definición del **workflow**, donde se especifican los 
 El proceso de CI/CD se realiza mediante **GitHub Actions**, el cual ejecuta el pipeline cada vez que ocurre el evento de pull request.
 
 <p align="center">
-  <img width="539" alt="GitHub Actions Pipeline" src="https://github.com/user-attachments/assets/b02532f6-c73b-4abf-a520-a7d4671870f8">
+<img width="311" height="47" alt="pullrequest" src="https://github.com/user-attachments/assets/00a25f88-12a8-4bb3-b199-753373580b0e" />
 </p>
 
 
